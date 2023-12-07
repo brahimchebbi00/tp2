@@ -1,6 +1,7 @@
 package com.tp2;
 
 import com.tp2.service.CompteService;
+import com.tp2.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,6 +14,8 @@ import java.rmi.registry.Registry;
 public class Tp2Application implements CommandLineRunner {
     @Autowired
     CompteService compteService;
+    @Autowired
+    ProductService productService;
 
     public static void main(String[] args) {
         SpringApplication.run(Tp2Application.class, args);
@@ -25,6 +28,7 @@ public class Tp2Application implements CommandLineRunner {
         System.setProperty("java.security.policy", "AllPermission.policy");
         // Lier l'objet distant au registre
         registry.bind("CompteService", compteService);
+        registry.bind("ProductService", productService);
         System.out.println("Server Started");
     }
 }
